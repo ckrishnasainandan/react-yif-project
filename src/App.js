@@ -1,36 +1,45 @@
-import React from 'react'
-import Nav from './components/NavBar';
+import React,{useEffect} from 'react'
 import './App.css';
-import kid from './kids round.png'
+import "aos/dist/aos.css"
+import AOS from 'aos'
+import Main from './components/Main_Home';
+import About from './components/Aboutus';
+import Work from './components/Ourwork';
+import OurTeam from './components/OurTeam';
+import OurEvent from './components/OurEvent';
+import Home from './components/Home';
 import Reach from './components/Reach';
-const App = () => {
-  const Done = () =>{
-   
-  }
+import Cases from './components/Cases';
+import kar from './components/images/Karnataka.svg'
+import Founder from './components/Founder';
+import Volunteer from './components/volunteer';
+import { Carousel } from 'react-bootstrap';
+import Services from './components/Services';
+import Gallery from './components/Gallery';
+import Team from './components/Team';
+import {Route,Routes} from 'react-router-dom'
+
+
+function App() {
+  useEffect(()=>{
+    AOS.init({duration:2000});
+    document.title='Youth India Foundation'
+  },[])  
+  window.addEventListener("scroll",function(){
+    var fixedhead=document.getElementById("fix")
+    fixedhead.classList.toggle("stick",window.scrollY>0)
+  })
   return (
-     <div>
-       <div className="body" id="body" onScroll={Done}>
-       <Nav/>
-       <div className='image'>
-          <div className='image1'>
-              <img  src={kid} width='40%' height='auto' alt='no'/>
-          </div> 
-         
-          <div className='content'>
-          <h1 id="one">Youth India<br/> Foundation</h1>
-          <h1 id="two">Youth India Foundation</h1>
-                <b><h4>A community for everyone to look beyond their own interests. Join us in our journey of a better and brighter tomorrow.</h4></b>
-                <a herf="#"><button>Get Started</button></a>
-          </div>
-       </div>
-     </div>
-     <Reach/>
-     </div>
+    <div className="App">
+      <Routes>
+        <Route path='/' element={<Main/>}/>
+        <Route path='/about' element={<About/>}/>
+        <Route path='/work' element={<Work/>}/>
+        <Route path='/team' element={<OurTeam/>}/>
+        <Route path='/events' element={<OurEvent/>}/>  
+      </Routes>
+    </div>
   );
 }
 
-
-
-
-export default App
-
+export default App;
